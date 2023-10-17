@@ -1,0 +1,32 @@
+<h2>게시글 수정</h2>
+<hr />
+<h3>
+    <a th:href="@{/}" style="text-decoration: none">Main</a>
+    <span>
+        <a th:href="@{/signout}" style="text-decoration: none"> Sign Out </a>
+    </span>
+</h3>
+<hr />
+<form method="post" th:action="@{/board/update/} + ${board.id}">
+    <div>
+        <label for="title">Title:</label><br />
+        <input
+            type="text"
+            id="title"
+            name="title"
+            th:value="${board.title}"
+            size="35"
+        />
+    </div>
+    <br />
+    <div>
+        <label for="content">Content:</label><br />
+        <textarea rows="10" cols="34" name="content" id="content">
+            [[ ${board.content} ]]
+        </textarea>
+    </div>
+    <br />
+    <div>
+        <button id="complete">수정완료</button>
+    </div>
+</form>

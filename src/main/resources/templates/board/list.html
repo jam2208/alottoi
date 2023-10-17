@@ -1,0 +1,44 @@
+<h2>게시물 목록</h2>
+<hr />
+<h3>
+    <a th:href="@{/}" style="text-decoration: none">Main</a>
+    <span>
+        <a th:href="@{/signout}" style="text-decoration: none"> Sign Out </a>
+    </span>
+</h3>
+<hr />
+<div>
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    <th>번호</th>
+                    <th>제목</th>
+                    <th>작성자</th>
+                    <th>작성일시</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="board : ${list}" th:attr="id=${board.id}">
+                    <td>
+                        <a th:href="@{/board/{id}(id=${board.id})}"
+                            >[[${board.id}]]</a
+                        >
+                    </td>
+
+                    <td th:text="${board.title}"></td>
+                    <td th:text="${board.writer}"></td>
+                    <td th:text="${board.dtWrite}"></td>
+                </tr>
+            </tbody>
+        </table>
+        <hr />
+        <button type="button" id="write-btn">게시글 작성</button>
+    </div>
+</div>
+
+<script>
+    document.querySelector("#write-btn").addEventListener("click", () => {
+        location = "/board/write";
+    });
+</script>

@@ -1,0 +1,145 @@
+<h2>회원 가입</h2>
+<hr />
+<h3>
+    <a th:href="@{/}" style="text-decoration: none">Main</a>
+    <span>
+        <a th:href="@{/signout}" style="text-decoration: none"> Sign Out </a>
+    </span>
+</h3>
+
+<hr />
+
+<form method="post" action="/signup">
+    <div>
+        <label for="name">Name</label> <br />
+        <input
+            type="text"
+            id="name"
+            name="name"
+            pattern="^[가-힣]+$|^[a-zA-Z]+$"
+            required
+            placeholder="한글 또는 영문"
+            size="35"
+            onkeyup="nameCheck1()"
+        />
+        <span id="resultName"></span>
+    </div>
+    <br />
+    <div>
+        <label for="pwd">Password</label> <br />
+        <input
+            type="password"
+            id="pwd"
+            name="pwd"
+            pattern="^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,20}$"
+            required
+            placeholder="영문, 숫자, 특수기호 포함, 8~20자로 구성"
+            size="35"
+            onkeyup="pwdCheck2()"
+        />
+        <br />
+        <label for="pwd">Password Check</label> <br />
+        <input
+            type="password"
+            id="pwdCheck"
+            name="pwdCheck"
+            placeholder="위의 비밀번호와 동일하게 입력하세요"
+            size="35"
+            onkeyup="pwdCheck2()"
+        />
+        <span id="resultPwd"></span>
+    </div>
+    <br />
+    <div>
+        <label for="email">Email</label> <br />
+        <input
+            type="text"
+            id="email"
+            name="email"
+            pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
+            required
+            placeholder="Ex : userid@email.com"
+            size="35"
+        />
+        <span>
+            <button type="button" onclick="emailCheck()">중복확인</button>
+        </span>
+        <span id="resultEmail"></span>
+    </div>
+    <br />
+    <div>
+        <label for="phnNum">Phone Number</label> <br />
+        <input
+            type="text"
+            id="phnNum"
+            name="phnNum"
+            pattern="^(0[1-6]{1}[0-5]{1})-[0-9]{3,4}-[0-9]{4}$"
+            required
+            placeholder="일반 또는 휴대전화번호 형식, '-' 포함"
+            size="35"
+        />
+    </div>
+    <br />
+    <div>
+        <button id="signup">Sign Up</button>
+    </div>
+</form>
+
+<script>
+    async function emailCheck() {
+        const email = document.querySelector("[name=email]").value;
+
+        const data = await fetch(`/email-check?email=${email}`);
+        const res = await data.text();
+        if (res == "available") {
+            document.querySelector("[id=resultEmail]").innerHTML =
+                "사용할 수 있는 이메일입니다.";
+            document.querySelector("[id=resultEmail]").style.color = "#2fb380";
+        } else {
+            document.querySelector("[id=resultEmail]").innerHTML =
+                "이미 사용중인 이메일입니다.";
+            document.querySelector("[id=resultEmail]").style.color = "#dc3545";
+        }
+    }
+
+    function pwdCheck2() {
+        let pwd = document.querySelector("[name=pwd]").value;
+        let pwdCheck = document.querySelector("[name=pwdCheck]").value;
+
+        if (pwdCheck != "") {
+            if (pwd == pwdCheck) {
+                document.querySelector("[id=resultPwd]").innerHTML =
+                    "일치합니다.";
+                document.querySelector("[id=resultPwd]").style.color =
+                    "#2fb380";
+            } else {
+                document.querySelector("[id=resultPwd]").innerHTML =
+                    "일치하지 않습니다.";
+                document.querySelector("[id=resultPwd]").style.color =
+                    "#dc3545";
+            }
+        } else {
+            document.querySelector("[id=resultPwd]").innerHTML = "";
+        }
+    }
+
+    function nameCheck1() {
+        let name = document.querySelector("[name=name]").value;
+        koNameRegExp = /^[가-힣]{2,}$/;
+        enNameRegExp = /^[a-zA-Z]{2,}$/;
+
+        if (name == "") {
+            console.log("1");
+            document.querySelector("[id=resultName]").innerHTML =
+                "이름을 입력하세요!";
+        } else if ((name == koNameRegExp) != (name == enNameRegExp)) {
+            console.log("2");
+            document.querySelector("[id=resultName]").innerHTML =
+                "조건에 부합 합니다.";
+        } else {
+            console.log("4");
+            document.querySelector("[id=resultName]").innerHTML =
+                "한글 또는 영어로만 입력하세요";
+        }
+    }
+</script>

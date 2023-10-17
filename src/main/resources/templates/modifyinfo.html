@@ -1,0 +1,56 @@
+<h2>회원정보 수정</h2>
+<hr />
+<h3>
+    <a th:href="@{/}" style="text-decoration: none">Main</a>
+    <span>
+        <a th:href="@{/signout}" style="text-decoration: none"> Sign Out </a>
+    </span>
+</h3>
+<hr />
+<form method="post" action="/modifyinfo">
+    <div>
+        <label for="name">Name:</label><br />
+        <input
+            type="text"
+            id="name"
+            name="name"
+            required
+            th:placeholder="${session.user_info.name}"
+        />
+    </div>
+    <br />
+    <div>
+        <label for="pwd">Password:</label><br />
+        <input type="password" id="pwd" name="pwd" required />
+    </div>
+    <br />
+    <!-- <div>
+        <label for="pwdCheck">Password check:</label>
+        <input type="password" id="pwdCheck" name="pwdCheck" />
+    </div> -->
+    <div>
+        <label for="email">Email:</label><br />
+        <input
+            type="text"
+            id="email"
+            name="email"
+            required
+            th:placeholder="${session.user_info.email}"
+        />
+    </div>
+    <br />
+    <div>
+        <label for="phnNum">Phone Number:</label><br />
+        <input
+            type="text"
+            id="phnNum"
+            name="phnNum"
+            th:placeholder="${session.user_info.phnNum}"
+        />
+    </div>
+    <hr />
+    <div>
+        <button id="modifyinfo">수정</button>
+        <button type="button">취소</button>
+    </div>
+</form>

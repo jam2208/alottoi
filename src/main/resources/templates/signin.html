@@ -1,0 +1,26 @@
+<h2>로그인</h2>
+<hr />
+<h3>
+    <a th:href="@{/}" style="text-decoration: none">Main</a>
+    <span>
+        <a th:href="@{/signout}" style="text-decoration: none"> Sign Out </a>
+    </span>
+</h3>
+<hr />
+<form method="post" action="/signin">
+    <div>
+        <span>Email</span>
+        <br />
+        <input type="text" name="email" placeholder="형식에 맞게 입력하세요" />
+    </div>
+    <br />
+    <div>
+        <span>Password</span>
+        <br />
+        <input type="password" name="pwd" placeholder="암호를 입력하세요" />
+    </div>
+    <br />
+    <div>
+        <button id="signin">Sign In</button>
+    </div>
+</form>

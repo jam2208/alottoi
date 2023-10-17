@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>AlottoI</title>
+    </head>
+    <body>
+        <div th:if="${session.user_info == null}">
+            <h1>
+                <p>AlottoI</p>
+            </h1>
+            <ul>
+                <li>
+                    <a th:href="@{/signin}">로그인</a>
+                </li>
+            </ul>
+            <ul>
+                <li>
+                    <a th:href="@{/signup}">회원가입</a>
+                </li>
+            </ul>
+            <ul>
+                <li>
+                    <a th:href="@{/recommend}">Go! AlottoI</a>
+                </li>
+            </ul>
+            <ul>
+                <li>
+                    <a th:href="@{/board/list}">게시판</a>
+                </li>
+            </ul>
+        </div>
+        <div th:unless="${session.user_info == null}">
+            <h1>
+                <p>[[ ${session.user_info.name} + '님 반갑습니다.' ]]</p>
+            </h1>
+            <ul>
+                <li>
+                    <a th:href="@{/recommend}">Go! AlottoI</a>
+                </li>
+            </ul>
+            <ul>
+                <li>
+                    <a th:href="@{/board/list}">게시판</a>
+                </li>
+            </ul>
+            <ul>
+                <li>
+                    <a th:href="@{/checkinfo}">회원정보수정</a>
+                </li>
+            </ul>
+            <ul>
+                <li>
+                    <a th:href="@{/signout}">로그아웃</a>
+                </li>
+            </ul>
+        </div>
+    </body>
+</html>
