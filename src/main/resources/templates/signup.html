@@ -31,7 +31,6 @@
             type="password"
             id="pwd"
             name="pwd"
-            pattern="^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,20}$"
             required
             placeholder="영문, 숫자, 특수기호 포함, 8~20자로 구성"
             size="35"
@@ -125,17 +124,16 @@
 
     function nameCheck1() {
         let name = document.querySelector("[name=name]").value;
-        koNameRegExp = /^[가-힣]{2,}$/;
-        enNameRegExp = /^[a-zA-Z]{2,}$/;
+        let koNameRegExp = /^[가-힣]{2,}$/;
+        let enNameRegExp = /^[a-zA-Z]{3,}$/;
 
-        if (name == "") {
+        if (koNameRegExp.test(name) != enNameRegExp.test(name)) {
             console.log("1");
             document.querySelector("[id=resultName]").innerHTML =
-                "이름을 입력하세요!";
-        } else if ((name == koNameRegExp) != (name == enNameRegExp)) {
-            console.log("2");
-            document.querySelector("[id=resultName]").innerHTML =
                 "조건에 부합 합니다.";
+        } else if (name == "") {
+            document.querySelector("[id=resultName]").innerHTML =
+                "이름을 입력하세요";
         } else {
             console.log("4");
             document.querySelector("[id=resultName]").innerHTML =

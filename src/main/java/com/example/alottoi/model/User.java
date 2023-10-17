@@ -1,5 +1,6 @@
 package com.example.alottoi.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -13,7 +14,7 @@ import lombok.Data;
 
 @Entity
 @Data
-public class User {
+public class User implements Serializable {
     @Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

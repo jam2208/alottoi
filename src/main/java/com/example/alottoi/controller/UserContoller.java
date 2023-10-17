@@ -129,6 +129,12 @@ public class UserContoller {
 		
 	}
 
+	@GetMapping("/quit")
+	public String quit() {
+		
+		return "redirect:/";
+	}
+
 	@GetMapping("/signout")
 	public String signout() {
 		session.invalidate();

@@ -51,6 +51,23 @@
     <hr />
     <div>
         <button id="modifyinfo">수정</button>
-        <button type="button">취소</button>
+        <button>
+            <a
+                tyep="button"
+                th:href="@{/}"
+                id="cancle"
+                style="text-decoration: none"
+                >취소</a
+            >
+        </button>
+        <button>
+            <a
+                tyep="button"
+                th:href="@{/quit}"
+                id="quit"
+                style="text-decoration: none"
+                >회원탈퇴</a
+            >
+        </button>
     </div>
 </form>
