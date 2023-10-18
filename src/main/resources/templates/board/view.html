@@ -22,26 +22,22 @@
 <hr />
 <div>
     <div th:if="${session.user_info.id == board.userId}">
-        <ul>
             <button>
-                <a th:href="@{/board/list}" id="list">목록</a>
+                <a th:href="@{/board/list}" id="list" style="text-decoration: none;">목록</a>
             </button>
             <button>
-                <a th:href="@{/board/update/{id}(id=${board.id})}" id="update"
+                <a th:href="@{/board/update/{id}(id=${board.id})}" id="update" style="text-decoration: none;"
                     >수정</a
                 >
             </button>
             <button>
-                <a href="#delete" id="delete" th:num="${board.id}">삭제</a>
+                <a href="#delete" id="delete" th:num="${board.id}" style="text-decoration: none;">삭제</a>
             </button>
-        </ul>
     </div>
     <div th:unless="${session.user_info.id == board.userId}">
-        <ul>
-            <li>
-                <a th:href="@{/board/list}" id="list">목록</a>
-            </li>
-        </ul>
+            <button>
+                <a th:href="@{/board/list}" id="list" style="text-decoration: none;">목록</a>
+            </button>
     </div>
 </div>
 
